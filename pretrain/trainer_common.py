@@ -3,8 +3,21 @@
 #
 # This source code is licensed under the license found in the
 # LICENSE file in the root directory of this source tree.
-
+# Built-in Libs
+from pathlib import Path
+import sys
 import os
+
+script_dir = os.path.abspath(__file__)
+src_dir = Path(os.path.dirname(script_dir))
+
+# It's easier to add to the system's path as there
+# might be several scripts and we do not want to import them one by one
+sys.path.insert(1, str(Path.joinpath(src_dir)))
+sys.path.insert(1, str(Path.joinpath(src_dir.parent)))
+sys.path.append(str(Path.joinpath(src_dir)))
+sys.path.append(str(Path.joinpath(src_dir.parent)))
+
 import copy
 import time
 from typing import Callable
@@ -29,7 +42,7 @@ from pretrain.online_classification_benchmark import OnlineLinearClassificationB
 import utils
 
 from data.imagenette import Imagenette
-from data.cached_imagenet import CachedImageNet
+# from data.cached_imagenet import CachedImageNet #TIPP
 from data.hdf5_imagefolder import HDF5ImageFolder
 
 class LightlyModel(pl.LightningModule):
