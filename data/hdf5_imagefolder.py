@@ -79,10 +79,10 @@ class HDF5ImageFolder(Dataset):
 if __name__ == "__main__":
     data_root = '/data'
     dataset = 'imagenet-100'
-    for split in ['val','train']:
-        dataset_root = os.path.join(data_root, dataset, split)
-        output_file = os.path.join(data_root, f'{dataset}-{split}.h5')
-        save_imagenet_to_hdf5(dataset_root, output_file, num_workers=4)
+    # for split in ['val','train']:
+    #     dataset_root = os.path.join(data_root, dataset, split)
+    #     output_file = os.path.join(data_root, f'{dataset}-{split}.h5')
+    #     save_imagenet_to_hdf5(dataset_root, output_file, num_workers=4)
 
     # HDF5 file generation times
     # | Dataset      | Split | Time     |
