@@ -42,7 +42,7 @@ trainer:
   # resume_from_checkpoint: null
 
 optimizer:
-  batch_size: 128
+  batch_size: 32 # 128
   lr: 0.01
   weight_decay: 0.01
   cosine_warmpup_sched: True

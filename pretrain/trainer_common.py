@@ -200,7 +200,7 @@ class LightlyModel(pl.LightningModule):
             "stl10": dict(root="/data/stl10", download=True, split='train+unlabeled'),
             "tiny-imagenet": dict(root="/data/tiny-imagenet-200/train"),
             "imagenette": dict(root="/data/imagenette", split='train', download=True),
-            "imagenet-100": dict(root="/data/imagenet-100-train.h5"),
+            "imagenet-100": dict(root="/data/imagenet-100-train.X1.h5"),
             "imagenet-1k": dict(root="/data/imagenet-train.h5"),
         }
         val_dataset_kwargs = {
@@ -208,7 +208,7 @@ class LightlyModel(pl.LightningModule):
             "stl10": dict(root="/data/stl10", split='test'),
             "tiny-imagenet": dict(root="/data/tiny-imagenet-200/val"),
             "imagenette": dict(root="/data/imagenette", split='val'),
-            "imagenet-100": dict(root="/data/imagenet-100-val.h5"),
+            "imagenet-100": dict(root="/data/imagenet-100-val.X.h5"),
             "imagenet-1k": dict(root="/data/imagenet-val.h5"),
         }
         input_sizes = {

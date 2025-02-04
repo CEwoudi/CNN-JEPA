@@ -270,7 +270,7 @@ class IJEPA_CNN(LightlyModelMomentum):
     #     return [optimizer], [scheduler]
 
 
-@hydra.main(version_base="1.2", config_path="configs/", config_name="ijepacnn_imagenet.yaml")
+@hydra.main(version_base="1.2", config_path="configs/", config_name="ijepacnn_imagenet100.yaml")
 def pretrain_byol(cfg: DictConfig):
     main_pretrain(cfg, IJEPA_CNN)
 

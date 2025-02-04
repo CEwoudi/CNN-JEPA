@@ -188,3 +188,4 @@ SparK/wandb/*
 byol_lightly.ckpt
 .vscode/launch.json
 /data/ImageNet-100
+*.h5

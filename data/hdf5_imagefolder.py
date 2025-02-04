@@ -54,7 +54,7 @@ class HDF5ImageFolder(Dataset):
             and returns a transformed version. Default: None.
         """
         self.transform = transform
-        self.hdf5_file = h5py.File(root, 'r', driver='sec2')
+        self.hdf5_file = h5py.File(root.lstrip("/"), 'r', driver='sec2')
 
         self.images = self.hdf5_file['images']
         self.labels = self.hdf5_file['labels']
@@ -77,11 +77,13 @@ class HDF5ImageFolder(Dataset):
 
   
 if __name__ == "__main__":
-    data_root = '/data'
+    from pathlib import Path
+    root = os.path.abspath(os.getcwd())
+    data_root = 'data'
     dataset = 'imagenet-100'
-    # for split in ['val','train']:
-    #     dataset_root = os.path.join(data_root, dataset, split)
-    #     output_file = os.path.join(data_root, f'{dataset}-{split}.h5')
+    # for split in ['val.X','train.X1']:
+    #     dataset_root = os.path.join(root, data_root, dataset, split)
+    #     output_file = os.path.join(root, data_root, f'{dataset}-{split}.h5')
     #     save_imagenet_to_hdf5(dataset_root, output_file, num_workers=4)
 
     # HDF5 file generation times
@@ -94,7 +96,7 @@ if __name__ == "__main__":
 
     # Evaluate performance
     tracemalloc.start()
-    output_file = os.path.join(data_root, f'{dataset}-train.h5')
+    output_file = os.path.join(data_root, f'{dataset}-train.X1.h5')
     transform = transforms.Compose([
         transforms.RandomResizedCrop(
             224, scale=(0.2, 1.0), interpolation=3
@@ -104,7 +106,7 @@ if __name__ == "__main__":
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     ])
     custom_dataset = HDF5ImageFolder(output_file, transform=transform)
-    dataloader = DataLoader(custom_dataset, batch_size=32, shuffle=True, num_workers=12)
+    dataloader = DataLoader(custom_dataset, batch_size=64, shuffle=True, num_workers=12)
 
     start = time.time()
     for i, batch in tqdm(enumerate(dataloader), total=len(dataloader)):
